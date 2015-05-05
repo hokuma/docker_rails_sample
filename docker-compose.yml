@@ -1,0 +1,20 @@
+mysqldata:
+  image: busybox
+  volumes:
+   - /var/lib/mysql
+mysqld:
+  image: mysql
+  volumes_from:
+   - mysqldata
+  ports:
+   - 3306:3306
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+app:
+  build: ./
+  ports:
+   - 8080:3000
+  links:
+   - mysqld:mysqld
+  volumes:
+   - $PWD:/usr/src/app
