@@ -1,5 +1,5 @@
 mysqldata:
-  image: busybox
+  image: mysql
   volumes:
    - /var/lib/mysql
 mysqld:
